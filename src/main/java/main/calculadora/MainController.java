@@ -7,7 +7,7 @@ import javafx.scene.text.Text;
 public class MainController {
     private String number = "0";
     private String number2 = "0";
-    private String operation;
+    private String operation = "";
     private float result;
     private int resultInt;
     private boolean isOnTwo = false;
@@ -15,14 +15,16 @@ public class MainController {
     private Text Maintext = new Text();
     public void addOne(ActionEvent e){
         if(!isOnTwo) {
-            if (number == "0") {
+            if (number == "0" || number == "0.0") {
                 number = "1";
                 System.out.println(number);
                 Maintext.setText(number);
+                System.out.println("1");
             } else {
                 number = number + "1";
                 System.out.println(number);
                 Maintext.setText(number);
+                System.out.println("2");
             }
         }else {
             if (number2 == "0") {
@@ -240,24 +242,32 @@ public class MainController {
     }
     public void addPoint(ActionEvent e){
         if(!isOnTwo) {
-            if (number == "0") {
-                number = "0.";
-                System.out.println(number);
-                Maintext.setText(number);
-            } else {
-                number = number + ".";
-                System.out.println(number);
-                Maintext.setText(number);
+            if(!number.contains(".")) {
+                if (number == "0") {
+                    number = "0.";
+                    System.out.println(number);
+                    Maintext.setText(number);
+                } else {
+                    number = number + ".";
+                    System.out.println(number);
+                    Maintext.setText(number);
+                }
+            }else{
+                System.out.println("Point Overload");
             }
         }else {
-            if (number2 == "0") {
-                number2 = "0.";
-                System.out.println(number + operation + number2);
-                Maintext.setText(number + operation + number2);
-            } else {
-                number2 = number2 + ".";
-                System.out.println(number + operation + number2);
-                Maintext.setText(number + operation + number2);
+            if(!number2.contains(".")) {
+                if (number2 == "0") {
+                    number2 = "0.";
+                    System.out.println(number + operation + number2);
+                    Maintext.setText(number + operation + number2);
+                } else {
+                    number2 = number2 + ".";
+                    System.out.println(number + operation + number2);
+                    Maintext.setText(number + operation + number2);
+                }
+            }else{
+                System.out.println("Point Overload");
             }
         }
     }
@@ -365,31 +375,39 @@ public class MainController {
                 result = Float.parseFloat(number) / Float.parseFloat(number2);
                 break;
             }
+            case "" ->{
+                break;
+            }
         }
-        System.out.println(result);
-        if(operation == "/"){
-            if(Float.parseFloat(number) % Float.parseFloat(number2) == 0) {
+        if(!(operation == "")){
+            System.out.println(result);
+            if (operation == "/") {
+                if (Float.parseFloat(number) % Float.parseFloat(number2) == 0) {
+                    resultInt = (int) result;
+                    Maintext.setText(String.valueOf(resultInt));
+                    number = String.valueOf(resultInt);
+                    System.out.println("Case 2");
+                } else {
+                    Maintext.setText(String.valueOf(result));
+                    number = String.valueOf(result);
+                    System.out.println("Case 4");
+                }
+            } else if (!number.contains(".") && !number2.contains(".")) {
                 resultInt = (int) result;
                 Maintext.setText(String.valueOf(resultInt));
                 number = String.valueOf(resultInt);
-                System.out.println("Case 2");
-            }else{
+                System.out.println("Case 1");
+            } else {
                 Maintext.setText(String.valueOf(result));
                 number = String.valueOf(result);
-                System.out.println("Case 4");
+                System.out.println("Case 3");
             }
-        }else if(!number.contains(".") && !number2.contains(".")){
-            resultInt = (int) result;
-            Maintext.setText(String.valueOf(resultInt));
-            number = String.valueOf(resultInt);
-            System.out.println("Case 1");
+
+            isOnTwo = false;
+            number2 = "0";
         }else{
-            Maintext.setText(String.valueOf(result));
-            number = String.valueOf(result);
-            System.out.println("Case 3");
+            System.out.println("Operation empty");
         }
-        isOnTwo = false;
-        number2 = "0";
     }
     public void clear(ActionEvent e){
         number = "0";
@@ -407,6 +425,25 @@ public class MainController {
             number2 = "0";
             System.out.println("Cleared");
             Maintext.setText(number + operation + number2);
+        }
+    }
+    public void negate(ActionEvent e){
+        if(!isOnTwo){
+            if(number.contains(".")){
+                number = String.valueOf(Float.parseFloat(number) * -1);
+                Maintext.setText(number);
+            }else{
+                number = String.valueOf(Integer.parseInt(number) * -1);
+                Maintext.setText(number);
+            }
+        }else{
+            if(number2.contains(".")){
+                number2 = String.valueOf(Float.parseFloat(number2) * -1);
+                Maintext.setText(number2);
+            }else{
+                number2 = String.valueOf(Integer.parseInt(number2) * -1);
+                Maintext.setText(number2);
+            }
         }
     }
     public static String removeLastDigit(String s) {

@@ -1,6 +1,41 @@
-.button{
+#background{
+    -fx-background-color: #26262c;
 
+}
+.button{
+    -fx-background-color: #2f2f37;
+    -fx-border-radius: 10px;
+    -fx-border-width: 1px;
+    -fx-background-radius: 8px;
+}
+.button:hover{
+    -fx-background-color: #3b3b44;
+}
+.button:pressed{
+     -fx-background-color: #2f2f37;
+}
+
+.button5{
+    -fx-background-color:   #3b3b44;
+
+}
+
+.button5:hover{
+     -fx-background-color: #2f2f37;
+
+}
+.button5:pressed{
+     -fx-background-color: #242429;
 }
 #Maintext{
     -fx-text-alignment: right;
+}
+#button3{
+    -fx-background-color:  #474752;
+}
+#button3:hover{
+    -fx-background-color: #3b3b44;
+}
+#button3:pressed{
+    -fx-background-color: #26262c;
 }
