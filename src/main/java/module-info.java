@@ -3,6 +3,6 @@ module main.calculadora {
     requires javafx.fxml;
 
 
-    opens main.calculadora to javafx.fxml;
-    exports main.calculadora;
+    opens com.calculadora to javafx.fxml;
+    exports com.calculadora;
 }
