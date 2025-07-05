@@ -7,11 +7,15 @@
 
 https://github.com/user-attachments/assets/b7befa3f-aab0-4836-b71e-c6f2b567545d
 
-
+### Features da Calculadora
+- Operações com números decimais
+- Operações com números negativos
+- Interface interativa
+- Botoes Clear(C) e ClearEntry(CE)
 
 ### Ajustes e melhorias
 
-O projeto ainda está em desenvolvimento e as próximas atualizações serão voltadas para as seguintes tarefas:
+O projeto continua em desenvolvimento e as próximas atualizações serão voltadas para as seguintes tarefas:
 
-- [x] Executavel jar
+- [x] Executável jar
 - [ ] Adicionar mais features
